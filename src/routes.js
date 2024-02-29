@@ -6,6 +6,7 @@ routes.get('/', async (req,res) => {
         const allUsers = await knex('usuarios');
         return res.json(allUsers);
     } catch (error) {
+        console.log(error.message);
         return res.status(500).json({ mensagem: 'erro no servidor' })
     }
 })
