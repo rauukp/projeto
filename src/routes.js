@@ -1,5 +1,5 @@
 const express = require('express')
-const knex = require('./connection');
+const knex = require('./connection.js');
 const { newUser } = require('./controllers/controllers');
 const routes = express()
 
