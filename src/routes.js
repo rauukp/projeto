@@ -3,6 +3,8 @@ const knex = require('./connection');
 const { newUser } = require('./controllers/controllers');
 const routes = express()
 
+routes.use(express.json())
+
 routes.get('/', async (req,res) => {
     try {
         const allUsers = await knex('usuarios');
