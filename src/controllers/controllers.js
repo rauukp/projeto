@@ -1,6 +1,5 @@
 require('dotenv').config()
 const knex = require('../connection')
-const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const newUser = async (req,res) => {
