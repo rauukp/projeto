@@ -1,6 +1,7 @@
 require('dotenv').config()
 const knex = require('../connection')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs');
 
 const newUser = async (req,res) => {
     const { nome, email, senha } = req.body;
@@ -13,10 +14,12 @@ const newUser = async (req,res) => {
         return res.status(400).json({"mensagem": "Informe uma senha valida para cadastro."})
     };
 
+    const criptoPass = await bcrypt.hash(senha, 10);
+
     const newU = {
         nome,
         email,
-        senha
+        criptoPass
     }
     try {
         const validUser = await knex('usuarios').insert(newU).returning(['id','nome']);
