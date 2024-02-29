@@ -13,12 +13,11 @@ const newUser = async (req,res) => {
     } if (!pass) {
         return res.status(400).json({"mensagem": "Informe uma senha valida para cadastro."})
     };
-    const criptoPass = await bcrypt.hash(pass, 10);
-    const criptoEmail = await bcrypt.hash(email, 10);
+
     const newU = {
         nome,
-        criptoEmail,
-        criptoPass
+        email,
+        pass
     }
     try {
         const validUser = await knex('usuarios').insert(newU).returning(['id','nome']);
